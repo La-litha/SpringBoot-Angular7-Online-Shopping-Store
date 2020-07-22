@@ -2,7 +2,7 @@ pipeline {
     agent any
             
         stages {
-          stage('package'){
+            stage('package'){
                 steps{
                         bat '''
                             cd backend
@@ -27,25 +27,5 @@ pipeline {
     }          
    
 }
-stage('package'){
-                steps{
-                        bat '''
-                            cd backend
-                             mvn clean package
-                             mvn clean install
-                             mvn -B verify
-                            '''
-                 }
-            }
-            // Build The Project              
-            stage('Build') {
-                         steps {
-                             git 'https://github.com/La-litha/SpringBoot-Angular7-Online-Shopping-Store.git'
-                           bat '''
-                            cd backend
-                            mvn clean install
-                           '''
-                        }
-                 
-                }
-        }
+            
+       
