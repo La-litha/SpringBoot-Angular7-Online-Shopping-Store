@@ -2,27 +2,50 @@ pipeline {
     agent any
             
         stages {
-           stage('SCM') {
-      steps {
-         git 'https://github.com/La-litha/SpringBoot-Angular7-Online-Shopping-Store.git'
-       }
-    }
-   stage("Build") {
-    tools{
-        jdk 'jdk 1.8'
-        maven 'apache-maven-3.6.3'
+          stage('package'){
+                steps{
+                        bat '''
+                            cd backend
+                             mvn clean package
+                             mvn clean install
+                             mvn -B verify
+                            '''
+                 }
+            }
+            // Build The Project              
+            stage('Build') {
+                         steps {
+                             git 'https://github.com/La-litha/SpringBoot-Angular7-Online-Shopping-Store.git'
+                           bat '''
+                            cd backend
+                            mvn clean install
+                           '''
+                        }
+                 
+                }
         }
-     steps {
-    bat '''
-           cd backend
-           mvn clean install
-	   java -version
-           mvn -version
-           mvn clean package
-                   
-       '''
-   }
-   }
     }          
    
 }
+stage('package'){
+                steps{
+                        bat '''
+                            cd backend
+                             mvn clean package
+                             mvn clean install
+                             mvn -B verify
+                            '''
+                 }
+            }
+            // Build The Project              
+            stage('Build') {
+                         steps {
+                             git 'https://github.com/La-litha/SpringBoot-Angular7-Online-Shopping-Store.git'
+                           bat '''
+                            cd backend
+                            mvn clean install
+                           '''
+                        }
+                 
+                }
+        }
