@@ -14,7 +14,7 @@ pipeline {
         }
      steps {
     bat '''
-           cd worker
+           cd backend
            mvn clean install
 	   java -version
            mvn -version
