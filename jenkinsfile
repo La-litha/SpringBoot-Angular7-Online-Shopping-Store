@@ -3,6 +3,10 @@
             
         stages {
            stage('SCM') {
+	      tools{
+		jdk 'Jdk_1.8'
+		maven 'apache-maven-3.6.3'
+        	}
       steps {
          git 'https://github.com/La-litha/SpringBoot-Angular7-Online-Shopping-Store.git'
        }
@@ -12,11 +16,7 @@
      steps {
     bat '''
            cd backend
-           mvn clean install
-	   java -version
-           mvn -version
-           mvn clean package
-                   
+           mvn clean install          
        '''
     }
    }
